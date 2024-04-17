@@ -1,0 +1,16 @@
+on: [push]
+
+jobs:
+  build_and_package:
+    runs-on: ubuntu-latest
+    name: arm
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 使用reMarkable-Nuitka-Build-Action
+      - name: Compile with Nuitka
+        uses: Eeems/reMarkable-Nuitka-Build-Action@v2  # 替换为实际的版本号
+        with:
+          main: 'test/test.py'  # 提供要编译的主文件相对路径
+          output_dir: 'test/dist'  # 指定输出目录，如果需要的话可以自定义
