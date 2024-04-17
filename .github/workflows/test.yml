@@ -1,0 +1,24 @@
+name: Run Test Script Manually on Linux
+on:
+  workflow_dispatch: # 添加手动触发的workflow_dispatch事件
+    inputs:
+      version:
+        description: 'Enter the Python version to use'
+        required: true
+        default: '3.10'
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ github.event.inputs.version }}
+
+    - name: Run Test Script
+      run: |
+        python test/test.py
