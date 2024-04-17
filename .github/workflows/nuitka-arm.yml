@@ -1,0 +1,37 @@
+name: Compile Python with Nuitka for ARM64 Linux
+
+on:
+  push:
+    branches: [ 'main' ]
+  workflow_dispatch:
+
+jobs:
+  build_arm64:
+    runs-on: ubuntu-latest-arm64
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.10 (ARM64)
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+        architecture: 'arm64' # 对于Python官方的actions/setup-python，architecture通常是自动识别的，但在这里注明以防万一
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Compile with Nuitka
+      run: |
+        python -m pip install nuitka
+        python -m nuitka --standalone --nofollow-import-to=pandas,numpy --show-memory --show-progress --output-dir=out test.py
+
+    - name: Archive the compiled binary
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: CompiledExecutable_ARM64
+        path: out/
