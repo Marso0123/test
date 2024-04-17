@@ -18,4 +18,27 @@ jobs:
 
     - name: Run Test Script
       run: |
+<<<<<<< HEAD
         python test.py
+=======
+         pip install -r requirements.txt -r requirements-dev.txt
+
+      - name: Build Executable with Nuitka
+      uses: Nuitka/Nuitka-Action@main
+      with:
+         nuitka-version: main
+         script-name: test.py
+         # many more Nuitka options available, see action doc, but it's best
+         # to use nuitka-project: options in your code, so e.g. you can make
+         # a difference for macOS and create an app bundle there.
+         onefile: true
+
+      - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+         name: ${{ runner.os }} Build
+         path: | # match what's created for the 3 OSes
+            build/*.exe
+            build/*.bin
+            build/*.app/**/*
+>>>>>>> f5f3db11bce133891d445e0f79abf2151c847ad8
