@@ -1,4 +1,4 @@
-name: Run Test Script with Dependencies
+name: python test
 on:
   workflow_dispatch: # 保留手动触发，也可以根据实际情况选择其他触发器
 
