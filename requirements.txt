@@ -32,7 +32,6 @@ editdistance==0.6.2
 einops==0.7.0
 espnet-tts-frontend==0.0.3
 et-xmlfile==1.1.0
-fast-rnnt
 ffmpeg==1.4
 ffmpeg-python==0.2.0
 ffmpy3==0.2.4
