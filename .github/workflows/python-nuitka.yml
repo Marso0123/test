@@ -1,8 +1,6 @@
 name: Compile Python with Nuitka
 
 on:
-  push:
-    branches: [ 'main' ]  # 根据实际情况更改触发事件和分支
   workflow_dispatch:
 
 jobs:
