@@ -1,8 +1,6 @@
 name: Compile Python with Nuitka for ARM64 Linux
 
 on:
-  push:
-    branches: [ 'main' ]
   workflow_dispatch:
 
 jobs:
